@@ -14,6 +14,7 @@ def open_google(context):
 
 @when('Input {search_word} into search field')
 def input_search(context, search_word):
+    sleep(15)
     search = context.driver.find_element(*SEARCH_INPUT)
     search.clear()
     search.send_keys(search_word)
