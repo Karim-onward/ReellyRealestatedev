@@ -1,6 +1,5 @@
 # Created by karimonward at 13/05/2025
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Test for sign in and log out
+  # User should be able to login with an existing username and password
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: User can login and log out successfully

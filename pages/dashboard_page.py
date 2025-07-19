@@ -4,16 +4,15 @@ from time import sleep
 
 
 
-class DashboardPage(BasePage):
+#class DashboardPage(BasePage):
     #SETTING_BTN = (By.XPATH, "//a[@href='/settings']")
-    SETTING_BTN = (By.XPATH, "//div[@class='settings-code w-embed']")
+    #SETTING_BTN = (By.XPATH, "//div[@class='settings-code w-embed']")
 
 
-    def click_setting_btn(self):
-        """Clicks the settings button on the dashboard."""
-        self.click(*self.SETTING_BTN)
-        sleep(3)
-
+    #def click_setting_btn(self):
+        #"""Clicks the settings button on the dashboard."""
+        #self.click(*self.SETTING_BTN)
+        #sleep(3)
 
 
 
