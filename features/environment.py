@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver import FirefoxProfile
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
@@ -24,19 +25,31 @@ def browser_init(context, scenario_name):
     # service = Service(driver_path)
     # context.driver = webdriver.Chrome(service=service)
 
+    driver_path = GeckoDriverManager().install()
+    service = Service(driver_path)
+    context.driver = webdriver.Firefox(service=service)
+
 
     # context.driver.maximize_window()
     # context.driver.implicitly_wait(4)
     # context.app = Application(context.driver)
 
     # # HEADLESS MODE ####
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     options.add_argument('headless')
-    service = Service(ChromeDriverManager().install())
-    context.driver = webdriver.Chrome(
-        options=options,
-        service=service
+    service = Service(GeckoDriverManager().install())
+    context.driver = webdriver.Firefox(service=service
+
+
     )
+
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('headless')
+    # service = Service(ChromeDriverManager().install())
+    # context.driver = webdriver.Chrome(
+    #     options=options,
+    #     service=service
+
 
 
 
@@ -44,22 +57,22 @@ def browser_init(context, scenario_name):
     #Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
     # client_config = ClientConfig(remote_server_addr="hub-cloud.browserstack.com")
 
-    bs_user = "afeez_5VNXrv"
-    bs_key = "o9cPtfUPjgh26j39nGm1"
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    #remote_url = "https://hub-cloud.browserstack.com/wd/hub"
-
-
-    options = Options()
-    bstack_options = {
-        "os" : "Windows",
-        "osVersion" : "11",
-         'browserName': 'Edge',
-        'browserVersion': 'latest',
-         'sessionName': scenario_name,
-     }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options,)
+    # bs_user = "afeez_5VNXrv"
+    # bs_key = "o9cPtfUPjgh26j39nGm1"
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # #remote_url = "https://hub-cloud.browserstack.com/wd/hub"
+    #
+    #
+    # options = Options()
+    # bstack_options = {
+    #     "os" : "Windows",
+    #     "osVersion" : "11",
+    #      'browserName': 'Edge',
+    #     'browserVersion': 'latest',
+    #      'sessionName': scenario_name,
+    #  }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options,)
 
 
     context.driver.maximize_window()
