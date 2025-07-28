@@ -10,6 +10,8 @@ from selenium.webdriver.remote.remote_connection import ClientConfig
 from app.application import Application
 
 
+
+
 # Command to run tests with Allure & Behave:
 # behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/target_search.feature
 
@@ -21,9 +23,9 @@ def browser_init(context, scenario_name):
     :param context: Behave context
     """
 
-    # driver_path = ChromeDriverManager().install()
-    # service = Service(driver_path)
-    # context.driver = webdriver.Chrome(service=service)
+    driver_path = ChromeDriverManager().install()
+    service = Service(driver_path)
+    context.driver = webdriver.Chrome(service=service)
 
     # driver_path = GeckoDriverManager().install()
     # service = Service(driver_path)
@@ -60,22 +62,22 @@ def browser_init(context, scenario_name):
     #Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
     # client_config = ClientConfig(remote_server_addr="hub-cloud.browserstack.com")
 
-    bs_user = "afeez_5VNXrv"
-    bs_key = "o9cPtfUPjgh26j39nGm1"
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    # #remote_url = "https://hub-cloud.browserstack.com/wd/hub"
-    #
-    #
-    options = Options()
-    bstack_options = {
-        "os" : "Windows",
-        "osVersion" : "11",
-         'browserName': 'chrome',
-        'browserVersion': 'latest',
-         'sessionName': scenario_name,
-     }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options,)
+    # bs_user = "afeez_5VNXrv"
+    # bs_key = "o9cPtfUPjgh26j39nGm1"
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # # #remote_url = "https://hub-cloud.browserstack.com/wd/hub"
+    # #
+    # #
+    # options = Options()
+    # bstack_options = {
+    #     "os" : "Windows",
+    #     "osVersion" : "11",
+    #      'browserName': 'chrome',
+    #     'browserVersion': 'latest',
+    #      'sessionName': scenario_name,
+    #  }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options,)
 
 
     context.driver.maximize_window()
