@@ -22,14 +22,21 @@ def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
-
-    driver_path = ChromeDriverManager().install()
-    service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
+    driver_path = GeckoDriverManager().install()
+    #driver_path = ChromeDriverManager().install()
+    #service = Service(driver_path)
+    #context.driver = webdriver.Chrome(service=service)
 
     # driver_path = GeckoDriverManager().install()
     # service = Service(driver_path)
     # context.driver = webdriver.Firefox(service=service)
+
+    mobile_emulation = {"deviceName": "Nexus 5"}
+    # options = webdriver.ChromeOptions()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    service = Service(ChromeDriverManager().install())
+    context.driver = webdriver.Chrome(service=service, options=chrome_options)
 
 
     # context.driver.maximize_window()
